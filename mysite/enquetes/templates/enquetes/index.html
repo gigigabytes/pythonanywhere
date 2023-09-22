@@ -1,0 +1,28 @@
+<html>
+
+    <head>
+        <title>Enquetes App</title>
+        </head>
+
+    <body>
+        <h1>Aplicação de Enquetes - Dsweb 2023.2</h1>
+        {% if lista_perguntas %}
+            <ul>
+
+                {% for pergunta in lista_perguntas %}
+                    <li><a href = "/enquetes/{{ pergunta.id}}/">
+                        {{ pergunta.texto}}
+                    </a></li>
+
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            <h3>Nenhuma enquete cadastrada até o momento!</h3>
+        {% endif %}
+
+    </body>
+
+
+
+</html>

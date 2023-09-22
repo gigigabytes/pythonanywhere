@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Enquetes App</title>
+    </head>
+    <body>
+
+        <h1> Aplicação Enquetes - Dsweb 2023.2</h1>
+        <h3>#{{ pergunta.id }} {{ pergunta.texto}}</h3>
+        <p>Data de publicação: {{pergunta.data_pub}}</p>
+        <ol>
+            {% for alt in pergunta.alternativa_set.all %}
+                <li>{{alt.texto}}</li>
+
+            {%endfor%}
+
+        </ol>
+    </body>
+</html>
