@@ -10,7 +10,7 @@
             <ul>
 
                 {% for pergunta in lista_perguntas %}
-                    <li><a href = "/enquetes/{{ pergunta.id}}/">
+                    <li><a href = "{% url 'enquetes:detalhes' pergunta.id %}">
                         {{ pergunta.texto}}
                     </a></li>
 
@@ -22,7 +22,6 @@
         {% endif %}
 
     </body>
-
 
 
 </html>

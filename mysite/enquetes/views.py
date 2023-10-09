@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from .models import Pergunta
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Pergunta, Alternativa
+from django.urls import reverse
 
 
 def index(request):
@@ -13,8 +14,24 @@ def detalhes(request, pergunta_id):
     return render(request, 'enquetes/detalhes.html', {'pergunta': pergunta})
 
 def votacao(request, pergunta_id):
-    resposta = '<h1>Votação da enquete %s<h1>' % pergunta_id
-    return HttpResponse(resposta)
+    pergunta = get_object_or_404(Pergunta, pk = pergunta_id)
+    try:
+        alt_id = request.POST['alt_id']
+        alt_escolhida = pergunta.alternativa_set.get(pk=alt_id)
+    except (KeyError, Alternativa.DoesNotExist):
+        contexto = {
+            'pergunta': pergunta, 'error': 'Você precisa selecionar uma alternativa válida!'
+        }
+        return render(request, 'enquetes/detalhes.html', contexto)
+    else:
+        alt_escolhida.quant_votos += 1
+        alt_escolhida.save()
+        return HttpResponseRedirect(
+            reverse('enquetes:resultado', args=(pergunta.id,))
+        )
+
+    #resposta = '<h1>Votação da enquete %s<h1>' % pergunta_id
+    #return HttpResponse(resposta)
 
 
 def resultado(request, pergunta_id):
