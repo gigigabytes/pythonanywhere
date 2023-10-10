@@ -7,12 +7,30 @@
         <h1> Aplicação Enquetes - Dsweb 2023.2</h1>
         <h3>#{{ pergunta.id }} {{ pergunta.texto}}</h3>
         <p>Data de publicação: {{pergunta.data_pub}}</p>
-        <ol>
+        {% if error %}
+            <h3>ERRO: {{ error }}</h3>
+        {% endif %}
+        <form action="{% url 'enquetes:votacao' pergunta.id %}" method="post">
+        {% csrf_token %}
+        <ul>
+
             {% for alt in pergunta.alternativa_set.all %}
-                <li>{{alt.texto}}</li>
+                <li>
+                    <input type="radio" name="alt_id"
+                        id="alt{{ forloop.counter }}" value="{{ alt.id}}"/>
+                    <label for="alt{{ forloop.counter }}">
+                        {{ alt.texto }}
+                    </label><br>
+
+                    </li>
 
             {%endfor%}
 
-        </ol>
+        </ul>
+
+        <input type="submit" value="Registre aqui o seu voto.">
+        </form>
+        <hr/>
+        <a href="{% url 'enquetes:index' %}">Home</a>
     </body>
 </html>
