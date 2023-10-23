@@ -1,0 +1,10 @@
+body {
+    background: url("../img/background.jpg");
+    background-size: cover;
+}
+
+
+li a {
+
+    color: black;
+}

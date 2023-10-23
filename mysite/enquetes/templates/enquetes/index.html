@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'enquetes/css/style.css' %}"/>
+
 <html>
 
     <head>
@@ -6,6 +10,9 @@
 
     <body>
         <h1>Aplicação de Enquetes - Dsweb 2023.2</h1>
+
+        <img width= "100" src ="{% static 'enquetes/img/enquetes.jpg' %}">
+
         {% if lista_perguntas %}
             <ul>
 
