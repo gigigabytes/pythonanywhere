@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['itsgiovanna.pythonanywhere.com']
 
 INSTALLED_APPS = [
     'enquetes.apps.EnquetesConfig',
+    'acervo.apps.AcervoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

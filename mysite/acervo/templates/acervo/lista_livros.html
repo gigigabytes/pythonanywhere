@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Lista de livros 🍓 📚  </title>
+    </head>
+     <body>
+        <h1>Aplicação de Listagens de Livros</h1>
+        <h2>Seu Acervo Online</h2>
+
+
+    {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+         {% endif %}
+
+        <hr/>
+                <h2>Listagem dos Livros</h2>
+
+                {% if cursos %}
+                    <ul>
+                         {% for livro in acervo %}
+                            <li><a href="/acervo/{{livro.id}}">
+                                {{ livro.titulo }} - Autor: {{ livro.autor}} - Ano: {{ livro.ano}} - Emprestado: {{ livro.emprestado}}</a>
+
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h3>Nenhum livro cadastrado até o momento!</h3>
+                {% endif %}
+                <hr/>
+                <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
+
+    </body>
+</html>

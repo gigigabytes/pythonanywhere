@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Cadastrar novo livro 🍓 </title>
+    </head>
+    <body>
+        <hr/>
+        <h2>Cadastramento de Novo Livro<h2>
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+         {% endif %}
+
+        <form method="post" action="{% url 'acervo:livro_add' %}">
+        {% csrf_token %}
+
+        <p>
+        Título: <input type = "text" size = "50" name= "titulo"/>
+        <br>
+        Autor: <input type = "text" size = "50" name= "autor"/>
+        <br>
+        Ano: <input type = "text" size = "50" name= "ano"/>
+        <br>
+        Foto da capa: <input type="file" name="foto_capa" accept="image/*">
+        <br>
+        <input type = "submit" value= "Cadastrar o Livro"/>
+        </p>
+
+    </form>
+        <hr/>
+        Logado como: {{ user.username }}
+        (<a href="{% url 'logout' %}?next={% url 'acervo:lista_livros' %}">logout</a>)
+
+    </body>
+</html>
