@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'acervo/css/login.css' %}">
+    <title>Entrar</title>
+</head>
+<body>
+
+    <div class="content">
+        <h2>Acesse sua conta</h2>
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <div class="form-block">
+                <div class="block-auth">
+                    <div class="form-group">
+                        <input type="text" name="username" required>
+                        <div class="undeline"></div>
+                        <label for="">Usuário</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" required>
+                        <div class="undeline"></div>
+                        <label for="">Senha</label>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="{% static 'acervo/img/chihiro.png' %}" alt="">
+                </div>
+            </div>
+
+            <input type="submit" value="Entrar" class="submit"/>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+
+        <div class="links">
+            <span href="">
+                Não possui conta? <a href="{% url 'register' %}">Faça seu cadastro aqui.</a>
+            </span>
+            <span href="">
+                Esqueceu sua senha? <a href="{% url 'password_change' %}">Recupere aqui!</a>
+            </span>
+        </div>
+    </div>
+
+</body>
+</html>

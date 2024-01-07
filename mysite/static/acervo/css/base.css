@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
+
+:root {
+    --primary-color: #4d5bf9;
+    --secundary-color: #1D1D1D;
+    --white-color: #e6e6fc;
+    --primary-color-light: #555fd1e8;
+    --primary-color-heavy: #2534db;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--white-color);
+}
+
+.content {
+    height: 100vh;
+    margin-left: 17.3%;
+    padding: 30px;
+}
+
+
+.title-content {
+    text-align: center;
+}
+
+.navigation {
+    position: fixed;
+    top: .1px;
+    bottom: .1px;
+    width: 17%;
+    box-sizing: initial;
+    border-left: 5px solid var(--primary-color);
+    background-color: var(--primary-color);
+    transition: 0.5s;
+    overflow-x: hidden;
+}
+
+.navigation.active {
+    width: 300px;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 40px;
+}
+
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.navigation ul li.active {
+    background-color: var(--white-color);
+}
+
+.navigation ul li b:nth-child(1) {
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    width: 100%;
+    background-color: var(--white-color);
+    display: none;
+}
+
+.navigation ul li b:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom-right-radius: 20px;
+    background-color: var(--primary-color);
+}
+
+.navigation ul li b:nth-child(2) {
+    position: absolute;
+    bottom: -20px;
+    height: 20px;
+    width: 100%;
+    background-color: var(--white-color);
+    display: none;
+}
+
+.navigation ul li b:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    background-color: var(--primary-color);
+}
+
+.navigation ul li.active b:nth-child(1), 
+.navigation ul li.active b:nth-child(2) {
+    display: block;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navigation ul li.active a {
+    color: var(--secundary-color);
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+    font-size: 1.5em;
+}
+
+.navigation ul li a .tittle {
+    position: relative;
+    display: block;
+    padding-left: 15px;
+    height: 60px;
+    line-height: 60px;
+    white-space: normal;
+}
+
+@media (max-width:1050px) {

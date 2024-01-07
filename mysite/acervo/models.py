@@ -2,15 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-"""class Usuario(models.Model):
-    nome = models.CharField(max_length=200)
-    email = models.EmailField(max_length=250)
-    senha = models.CharField(max_length=250)
-
-    def __str__(self):
-        return self.nome
-"""
-
 class Contato(models.Model):
     nome = models.CharField(max_length=200)
     email = models.EmailField(max_length=250)
@@ -26,10 +17,10 @@ class Livro(models.Model):
     autor = models.CharField(max_length=200)
     ano = models.CharField(max_length=10)
     emprestado = models.BooleanField(default=False)
-    foto_capa = models.ImageField(upload_to='media/capas/', null = True, blank = True)
+    fotodacapa = models.ImageField(upload_to='media/capas/', null = True, blank = True)
     data_criacao = models.DateTimeField(auto_now=True)
     data_edicao = models.DateTimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+  #  user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def get_id(self):
         return self.id

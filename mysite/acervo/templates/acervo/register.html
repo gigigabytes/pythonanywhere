@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'acervo/css/register.css' %}">
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="content">
+        <h2>Faça sua conta</h2>
+
+        <form action="{% url 'register' %}" class="form" method="post">
+            {% csrf_token %}
+
+            <div class="form-block">
+                <div class="block-auth">
+                    <div class="form-group">
+                        <input type="text" name="user" required>
+                        <div class="undeline"></div>
+                        <label for="">Usuário</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" required>
+                        <div class="undeline"></div>
+                        <label for="">E-mail</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" required>
+                        <div class="undeline"></div>
+                        <label for="">Senha</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="confirm-password" required>
+                        <div class="undeline"></div>
+                        <label for="">Confirme a senha</label>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="{% static 'acervo/img/inspect.svg' %}" alt="">
+                </div>
+            </div>
+
+
+            <input type="submit" value="Cadastrar-se" class="submit"/>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+
+        <div class="links">
+            <span href="">
+                Já possui conta? <a href="{% url 'login' %}">Entre em sua conta.</a>
+            </span>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
+
+:root {
+   --primary-color: #CB1914;
+    --secundary-color: #F68374;
+    --white-color: #e6e6fc;
+    --primary-color-light: #F87871;
+    --primary-color-heavy: #F32719;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.content {
+    width: 45%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid var(--secundary-color); */
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.form-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+input.submit {
+    padding: 5px 10px;
+    width: 100px;
+    margin: 10px 0;
+    background-color: var(--white-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    color: var(--secundary-color);
+    font-weight: 500;
+}
+
+input.submit:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    transition: .4s;
+}
+
+.form-block .img {
+    width: 30%;
+    height: 80%;
+    display: flex;
+}
+
+.form-block .img img {
+    width: 100%;
+    height: 100%;
+    justify-self: start;
+}
+
+.block-auth {
+    width: 65%;
+}
+
+.form-group {
+    height: 40px;
+    position: relative;
+    border: none;
+    margin: 25px 0;
+}
+
+.form-group input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 17px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label {
+    transform: translateY(-20px);
+    font-size: 15px;
+    color: var(--primary-color);
+}
+
+.form-group label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: var(--primary-color);
+    pointer-events: none;
+    transition: all 0.3s ease;
+
+}
+
+.form-group .underline {
+    position: absolute;
+    bottom: 0px;
+    height: 2px;
+    width: 100%;
+}
+
+.form-group .underline:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: var(--primary-color);
+    transform: scaleX(0);
+}
+
+.form-group input:focus ~ .underline:before,
+.form-group input:valid ~ .underline:before {
+    transform: scale(1);
+}
+
+.links {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: .8em;
+    font-weight: bolder;
+    margin: 10px 0;
+}
+
+.links span {
+    color: var(--secundary-color);
+
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    margin-left: 5px;
+}

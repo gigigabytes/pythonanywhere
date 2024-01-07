@@ -9,5 +9,7 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name = 'index'),
     path('livros/', views.LivroListView.as_view(), name='lista_livros'),
     path('livros/add/', views.NovoLivroView.as_view(), name='livro_add'),
+    # path('cadastro/', views.RegisterView.as_view(), name='register'),
+    path('entrar/', views.LoginView.as_view(), name='login'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,9 +4,10 @@
     --primary-color: #CB1914;
     --secundary-color: #F68374;
     --white-color: #e6e6fc;
-    --primary-color-light: #F87871; 
+    --primary-color-light: #F87871;
     --primary-color-heavy: #F32719;
 }
+
 
 * {
     margin: 0;
@@ -16,11 +17,14 @@
 }
 
 body {
+    background: url("static/acervo/img/fundo.jpg");
+    background-size: cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: var(--white-color);
     padding-top: 7%;
+    text-align: center;
 }
 
 .title {
