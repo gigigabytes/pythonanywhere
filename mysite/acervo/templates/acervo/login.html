@@ -14,7 +14,7 @@
     <div class="content">
         <h2>Acesse sua conta</h2>
 
-        <form method="post" action="{% url 'login' %}">
+        <form method="post" action="{% url 'acervo:login' %}">
             {% csrf_token %}
 
             <div class="form-block">
@@ -42,10 +42,10 @@
 
         <div class="links">
             <span href="">
-                Não possui conta? <a href="{% url 'register' %}">Faça seu cadastro aqui.</a>
+                Não possui conta? <a href="{% url 'acervo:register' %}">Faça seu cadastro aqui.</a>
             </span>
             <span href="">
-                Esqueceu sua senha? <a href="{% url 'password_change' %}">Recupere aqui!</a>
+                Esqueceu sua senha? <a href="{% url 'acervo:password_change' %}">Recupere aqui!</a>
             </span>
         </div>
     </div>

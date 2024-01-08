@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
 
 :root {
-    --primary-color: #4d5bf9;
-    --secundary-color: #1D1D1D;
+   --primary-color: #FD9D9E;
+    --secundary-color: #F68374;
     --white-color: #e6e6fc;
-    --primary-color-light: #555fd1e8;
-    --primary-color-heavy: #2534db;
+    --primary-color-light: #F87871;
+    --primary-color-heavy: #F32719;
 }
 
 * {
@@ -103,7 +103,7 @@ input.submit:hover {
 }
 
 .form-group label {
-    position: absolute; 
+    position: absolute;
     bottom: 10px;
     left: 0;
     color: var(--primary-color);

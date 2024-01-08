@@ -1,10 +1,13 @@
+   {% load static %}
 <html>
     <head>
         <title>Cadastrar novo livro 🍓 </title>
     </head>
     <body>
         <hr/>
-        <h2>Cadastramento de Novo Livro<h2>
+        <h2>Cadastramento de Novo Livro 🍓 <h2>
+    <link rel="stylesheet" href="{% static 'acervo/css/novo_livro.css' %}">
+
         {% if messages %}
             <ul class="messages">
             {% for message in messages %}
@@ -31,7 +34,7 @@
     </form>
         <hr/>
         Logado como: {{ user.username }}
-        (<a href="{% url 'logout' %}?next={% url 'acervo:lista_livros' %}">logout</a>)
+        (<a href="{% url 'logout' %}?next={% url 'acervo:lista_livros' %}">Logout</a>)
 
     </body>
 </html>

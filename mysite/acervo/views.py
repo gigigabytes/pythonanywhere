@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 
+
 class IndexView(View):
    # template_name = 'acervo/index.html'
     def get (self, request, *args, **kwargs):
@@ -73,9 +74,9 @@ class LogoutView(TemplateView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect('/acervo')
-'''
 
-class RegisterView(View):
+
+class RegisterView(TemplateView):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return HttpResponseRedirect('/acervo/dashboard')
@@ -83,7 +84,7 @@ class RegisterView(View):
             return render(request, 'acervo/register.html')
 
 
-     def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         username = request.POST['user']
         email = request.POST['email']
         password = request.POST['password']
@@ -95,7 +96,7 @@ class RegisterView(View):
             if user:
                 return redirect('/acervo/entrar')
 
-        return render(request, 'app/login.html', context)
+        return render(request, 'acervo/login.html', context)
 
     def _user_exists(self, email):
         return User.objects.filter(email=email).exists()
@@ -108,5 +109,3 @@ class RegisterView(View):
         except:
             return None
 #continuar com base no que o professor fez ainda
-
-'''
