@@ -37,7 +37,6 @@
                       <td><a href="/{{item.id}}/editar/item"><span class="material-symbols-outlined">editar</span></a></td>
                       <td><a href="/{{item.id}}/deletar/item"><span class="material-symbols-outlined">deletar</span></i></a></td>
                       <br>
-                      <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item</a>
 
                   </tr>
                 {% endfor %}
@@ -48,6 +47,8 @@
                       <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item</a>
 
           {% endif %}
+                     <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item</a>
+
         </div>
       </div>
 
@@ -85,7 +86,6 @@
                     <td><a href="/{{livro.id}}/editar/livro"><span class="material-symbols-outlined">editar</span></a></td>
                     <td><a href="/{{livro.id}}/deletar/livro"><span class="material-symbols-outlined">deletar</span></i></a></td>
                     <br>
-                    <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
 
                   </tr>
                 {% endfor %}
@@ -96,6 +96,8 @@
                     <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
 
           {% endif %}
+                    <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
+
         </div>
 
       <div class="accordion-item">
@@ -125,7 +127,6 @@
                     <td><a href="/{{contato.id}}/editar/contato"><span class="material-symbols-outlined">editar</span></a></td>
                     <td><a href="/{{contato.id}}/deletar/contato"><span class="material-symbols-outlined">deletar</span></i></a></td>
                     <br>
-                    <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato</a>
 
                   </tr>
                 {% endfor %}
@@ -136,6 +137,8 @@
                     <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato</a>
 
           {% endif %}
+                    <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato</a>
+
         </div>
 
       <div class="accordion-item">
@@ -151,8 +154,9 @@
                 <tr>
                   <th scope="col">Nome</th>
                   <th scope="col">Data de empréstimo</th>
+                  <br>
                   <th scope="col">Objeto</th>
-                  <th scope="col">Finalizar</th>
+                  <th scope="col">Finalizar empréstimo</th>
                 </tr>
               </thead>
               <tbody>
@@ -161,9 +165,11 @@
                         <td> {{ emp.contato }} </td>
                         <td> {{ emp.data_emp }} </td>
                         <td> {{ emp }} </td>
+                        <br>
+                        <a href="{% url 'acervo:registro_emprestimo' %}">Visualizar devoluções dos empréstimos do usuário</a>
+                        <br>
                         <td><a href="/{{emp.id}}/finalizar"><span class="material-symbols-outlined"> concluir </span></a></td>
                         <br>
-                        <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo</a>
 
                     </tr>
                 {% endfor %}
@@ -174,6 +180,8 @@
                         <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo</a>
 
           {% endif %}
+                       <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo</a>
+
         </div>
     </div>
 
