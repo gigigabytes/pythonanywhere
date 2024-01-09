@@ -1,0 +1,36 @@
+
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" type="text/css" href="{% static 'acervo/css/base.css' %}">
+{% endblock %}
+
+{% block 'conteudo' %}
+
+<main class="container" style="padding-bottom: 80px;">
+
+    <h4 style="margin-top:30px; margin-bottom:16px">Adicionar novo item</h4>
+
+    <form action="{% url 'acervo:salva_item' %}" method="POST"> {% csrf_token %}
+        <div class="row g-3">
+            <div class="col">
+                <input name="nome" type="text" class="form-control" placeholder="Nome" aria-label="Nome">
+            </div>
+            <div class="col">
+                <input name="descricao" type="text" class="form-control" placeholder="Descrição" aria-label="Descrição">
+            </div>
+        </div>
+        <input style="margin-top:30px;" class="btn btn-dark btn-sm" type="submit" value="Salvar">
+    </form>
+
+    <hr/>
+
+
+
+        Logado como: {{ user.username }}
+        <br>
+        (<a href="{% url 'logout' %}?next={% url 'acervo:index' %}">Logout</a>)
+
+</main>
+
+{% endblock %}

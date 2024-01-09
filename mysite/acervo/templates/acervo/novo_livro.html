@@ -26,7 +26,8 @@
         <br>
         Ano: <input type = "text" size = "50" name= "ano"/>
         <br>
-        Foto da capa: <input type="file" name="foto_capa" accept="image/*">
+        <label for="fotoCapa">Foto de Capa:</label>
+        <input type="file" name="fotoCapa" accept="image/*">
         <br>
         <input type = "submit" value= "Cadastrar o Livro"/>
         </p>
@@ -34,7 +35,8 @@
     </form>
         <hr/>
         Logado como: {{ user.username }}
-        (<a href="{% url 'logout' %}?next={% url 'acervo:lista_livros' %}">Logout</a>)
+        <br>
+        (<a href="{% url 'logout' %}?next={% url 'acervo:index' %}">Logout</a>)
 
     </body>
 </html>

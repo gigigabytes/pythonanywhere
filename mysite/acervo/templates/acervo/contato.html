@@ -1,0 +1,32 @@
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" type="text/css" href="{% static 'acervo/css/base.css' %}">
+{% endblock %}
+
+{% block 'conteudo' %}
+
+<main class="container" style="padding-bottom: 80px;">
+
+    <h4 style="margin-top:30px; margin-bottom:16px">Adicionar novo contato 🍓</h4>
+
+    <form action="{% url 'acervo:salva_contato' %}" method="POST"> {% csrf_token %}
+        <div class="row g-3">
+            <div class="col">
+                <input name="nome_cont" type="text" class="form-control" placeholder="Nome" aria-label="Nome">
+            </div>
+            <div class="col">
+                <input name="email" type="text" class="form-control" placeholder="E-mail" aria-label="E-mail">
+            </div>
+            <div class="col">
+                <input name="telefone" type="text" class="form-control" placeholder="Telefone" aria-label="Telefone">
+            </div>
+        </div>
+        <input style="margin-top:30px;" class="btn btn-dark btn-sm" type="submit" value="Salvar">
+    </form>
+
+    <hr/>
+
+</main>
+
+{% endblock %}

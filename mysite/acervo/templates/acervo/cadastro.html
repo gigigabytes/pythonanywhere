@@ -1,0 +1,48 @@
+{% load static %}
+
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'acervo/css/cadastro.css' %}">
+  <title>Caca Collection</title>
+</head>
+
+<body>
+
+    <div class="cadastro">
+        {% if erro %}
+            <div class="alert">
+                {{ erro }}
+            </div>
+        {% endif %}
+
+      <div class="container">
+        <h1>Cadastre-se 🍓</h1>
+
+        <div class="form">
+          <form action="{% url 'acervo:cadastro' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Nome:</label>
+            <input type="text" placeholder="Digite o seu nome" name="nome" required />
+            <label>Username:</label>
+            <input type="text" placeholder="Digite o seu username" name="username" required />
+            <label>E-mail:</label>
+            <input type="email" placeholder="Digite o seu e-mail" name="email" required />
+            <label>Senha:</label>
+            <input type="password" placeholder="Digite sua senha" name="senha" required />
+
+            <button type="submit">Cadastrar</button>
+          </form>
+          <div class="login">
+                <a href="{% url 'acervo:login' %}">Já tem uma conta?</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</body>
+
+</html>

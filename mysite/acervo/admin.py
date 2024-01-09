@@ -1,9 +1,8 @@
 from django.contrib import admin
 
-from .models import Contato, Livro, EmprestimoLivro, Item, EmprestimoItem
+from .models import Livro, Emprestimo, Contato, Item
 
-admin.site.register(Contato)
-admin.site.register(Livro)
-admin.site.register(EmprestimoLivro)
 admin.site.register(Item)
-admin.site.register(EmprestimoItem)
+admin.site.register(Livro)
+admin.site.register(Emprestimo)
+admin.site.register(Contato)

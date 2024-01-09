@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Giovanna Lino">
+    <title>Caca Collection</title>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+    {% block 'head' %} {% endblock %}
+
+  </head>
+  <body style="position: relative; min-height: 100vh">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'acervo:home' %}">Caca Collection</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Adicionar
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="{% url 'acervo:salva_item' %}">Novo item</a></li>
+                <li><a class="dropdown-item" href="{% url 'acervo:salva_livro' %}">Novo livro</a></li>
+                <li><a class="dropdown-item" href="{% url 'acervo:salva_contato' %}">Novo contato</a></li>
+                <li><a class="dropdown-item" href="{% url 'acervo:emprestimo' %}">Novo empréstimo</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'acervo:registro_emprestimo' %}">Registro de devoluções</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'acervo:logout' %}">Sair</a>
+            </li>
+          </ul>
+          <form class="d-flex" method="GET" action="{% url 'acervo:pesquisa' %}">
+            <input class="form-control me-2" name="pesquisa" type="search" placeholder="Pesquisar" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    {% block 'conteudo' %} {% endblock %}
+
+    <div class="footer" style="position: absolute; left: 0; bottom: 0; width: 100%; height: 60px; text-align: center; padding-top: 20px;">
+        <h6>Copyright &copy 2024 - Giovanna Lino -  Todos os direitos reservados.</h6>
+    </div>
+
+  </body>
+  <script src="..assets/dist/js/bootstrap.bundle.min.js"></script>
+</html>

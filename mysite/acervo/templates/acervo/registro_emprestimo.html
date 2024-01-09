@@ -1,0 +1,42 @@
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" type="text/css" href="{% static 'acervo/css/base.css' %}">
+{% endblock %}
+
+{% block 'conteudo' %}
+
+<main class="container" style="padding-bottom: 80px;">
+
+    <h1 class="title">Devoluções</h1>
+
+    {% if emprestimos_finalizados %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Data de empréstimo</th>
+                  <th scope="col">Data devolução</th>
+                  <th scope="col">Objeto</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in lista_emp %}
+                    {% if emp.data_dev %}
+                      <tr>
+                        <td> {{ emp.contato }} </td>
+                        <td> {{ emp.data_emp }} </td>
+                        <td> {{ emp.data_dev }} </td>
+                        <td> {{ emp }} </td>
+                      </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p><strong> Nenhum registro </strong></p>
+    {% endif %}
+
+</main>
+
+{% endblock %}

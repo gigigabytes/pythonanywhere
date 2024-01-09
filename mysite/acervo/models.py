@@ -1,69 +1,61 @@
 from django.db import models
-from django.contrib.auth.models import User
+from datetime import date
 from django.utils import timezone
+from django.contrib.auth.models import User
 
-class Contato(models.Model):
-    nome = models.CharField(max_length=200)
-    email = models.EmailField(max_length=250)
-    data_criacao = models.DateTimeField(auto_now=True)
-    data_edicao = models.DateTimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+class Item(models.Model):
+    nome = models.CharField(max_length = 50)
+    descricao = models.CharField(max_length = 100, blank = True)
+    emprestado = models.BooleanField()
+    user = models.ForeignKey(User, on_delete = models.CASCADE, default = None)
 
     def __str__(self):
         return self.nome
 
 class Livro(models.Model):
-    titulo = models.CharField(max_length=200)
-    autor = models.CharField(max_length=200)
-    ano = models.CharField(max_length=10)
-    emprestado = models.BooleanField(default=False)
-    fotodacapa = models.ImageField(upload_to='media/capas/', null = True, blank = True)
-    data_criacao = models.DateTimeField(auto_now=True)
-    data_edicao = models.DateTimeField()
-  #  user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-
-    def get_id(self):
-        return self.id
+    titulo = models.CharField(max_length = 100)
+    autor = models.CharField(max_length = 50)
+    ano = models.IntegerField()
+    emprestado = models.BooleanField()
+    user = models.ForeignKey(User, on_delete = models.CASCADE, default = None)
+    fotoCapa = models.ImageField(upload_to='livros_capas/', null = True, blank = True)
 
     def __str__(self):
-        return self.titulo
+       return self.titulo
 
-class EmprestimoLivro(models.Model):
-    data_inicio = models.DateTimeField(auto_now_add=True)
-    devolucao = models.DateTimeField(auto_now=True)
-    data_edicao = models.DateTimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    contato = models.ForeignKey(Contato, on_delete=models.CASCADE, default=None)
-    livro = models.ForeignKey(Livro, on_delete=models.CASCADE, default=None)
-    emprestimo = models.BooleanField(default=True)
-
-    def get_livro_id(self):
-        return self.livro.id
-
-
-class Item(models.Model):
-    nome= models.CharField(max_length=150)
-    descricao = models.CharField(max_length=200)
-    emprestado = models.BooleanField(default=False)
-    data_criacao = models.DateTimeField(auto_now=True)
-    data_edicao = models.DateTimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-
-    def get_id(self):
-        return self.id
+class Contato(models.Model):
+    nome_cont = models.CharField(max_length = 50, default = None)
+    email = models.CharField(max_length = 50)
+    telefone = models.CharField(max_length = 15, default = None)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, default = None)
 
     def __str__(self):
-        return self.nome
+        return self.nome_cont
+
+# class Emprestimo(models.Model):
+#     data_emprestimo = models.DateField(auto_now_add=True)
+#     item = models.ForeignKey(Item, on_delete = models.CASCADE, null = True, blank = True)
+#     livro = models.ForeignKey(Livro, on_delete = models.CASCADE, null = True, blank = True)
+#     contato = models.ForeignKey(Contato, on_delete = models.CASCADE)
+#     user = models.ForeignKey(User, on_delete = models.CASCADE, default = None)
+
+#     def __str__(self):
+#         if self.item:
+#             return f"{self.item.nome}"
+#         else:
+#             return f"{self.livro.titulo}"
 
 
-class EmprestimoItem(models.Model):
-    data_inicio = models.DateTimeField(auto_now_add=True)
-    devolucao = models.DateTimeField(auto_now=True)
-    data_criacao = models.DateTimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    contato = models.ForeignKey(Contato, on_delete=models.CASCADE, default=None)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, default=None)
-    emprestado = models.BooleanField(default=True)
+class Emprestimo(models.Model):
+    data_emp = models.DateField(default = date.today)
+    data_dev = models.DateField(blank = True, null = True)
+    item = models.ForeignKey(Item, on_delete = models.CASCADE, null = True, blank = True)
+    livro = models.ForeignKey(Livro, on_delete = models.CASCADE, null = True, blank = True)
+    contato = models.ForeignKey(Contato, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, default = None)
 
-    def get_item_id(self):
-        return self.item.id
+    def __str__(self):
+        if self.item:
+            return f"{self.item.nome}"
+        else:
+            return f"{self.livro.titulo}"

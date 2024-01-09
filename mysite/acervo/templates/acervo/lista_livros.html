@@ -1,9 +1,12 @@
+ {% load static %}
 <html>
     <head>
         <title>Lista de livros 🍓 📚  </title>
+        <link rel="stylesheet" href="{% static 'acervo/css/base.css' %}">
+
     </head>
      <body>
-        <h1>Aplicação de Listagens de Livros</h1>
+        <h1>Caca Collection 🍓 </h1>
         <h2>Seu Acervo Online</h2>
 
 
@@ -18,11 +21,17 @@
         <hr/>
                 <h2>Listagem dos Livros</h2>
 
-                {% if cursos %}
+                {% if acervo %}
                     <ul>
                          {% for livro in acervo %}
                             <li><a href="/acervo/{{livro.id}}">
-                                {{ livro.titulo }} - Autor: {{ livro.autor}} - Ano: {{ livro.ano}} - Emprestado: {{ livro.emprestado}}</a>
+                                {{ livro.titulo }} <br> - Autor: {{ livro.autor}} - Ano: {{ livro.ano}} - Emprestado: {{ livro.emprestado}}</a>
+                             {% if livro.fotoCapa %}
+                                 <li> Capa : <img src="{{ livro.fotoCapa.url }}" alt="Foto Capa"></li>
+                             {% endif %}
+                                <style>
+                                    img {width: 50px; height: 50px;}
+                                </style>
 
                         {% endfor %}
                     </ul>
@@ -31,6 +40,13 @@
                 {% endif %}
                 <hr/>
                 <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
+
+
+        <br>
+        <br>
+        Logado como: {{ user.username }}
+        <br>
+        (<a href="{% url 'logout' %}?next={% url 'acervo:lista_livros' %}">Logout</a>)
 
     </body>
 </html>

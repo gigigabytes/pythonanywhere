@@ -1,0 +1,100 @@
+
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" type="text/css" href="{% static 'acervo/css/base.css' %}">
+{% endblock %}
+
+{% block 'conteudo' %}
+
+<main class="container" style="padding-bottom: 80px;">
+
+    <h2 style="margin-top:30px; margin-bottom:16px">Resultados para a pesquisa: {{ pesquisa }}</h2>
+
+    {% if lista_itens or lista_livros or lista_contatos %}
+        {% if lista_itens %}
+            <h4 style="margin-top:30px; margin-bottom:16px">Item</h4>
+            <table class="table  table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Emprestado?</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in lista_itens %}
+                        <tr>
+                            <td> {{ item.nome }} </td>
+                            <td> {{ item.descricao }} </td>
+                            <td> {% if item.emprestado %} Sim {% else %} Não {% endif %} </td>
+                            <td><a href="/{{item.id}}/editar/item"><span class="material-symbols-outlined">edit</span></a></td>
+                            <td><a href="/{{item.id}}/deletar/item"><span class="material-symbols-outlined">delete</span></i></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        {% if lista_livros %}
+            <h4 style="margin-top:30px; margin-bottom:16px">Livro</h4>
+            <table class="table  table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Ano</th>
+                        <th scope="col">Emprestado?</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for livro in lista_livros %}
+                            <tr>
+                                <td> {{ livro.titulo }} </td>
+                                <td> {{ livro.autor }} </td>
+                                <td> {{ livro.ano }} </td>
+                                <td> {% if livro.emprestado %} Sim {% else %} Não {% endif %} </td>
+                                <td><a href="/{{livro.id}}/editar/livro"><span class="material-symbols-outlined">edit</span></a></td>
+                                <td><a href="/{{livro.id}}/deletar/livro"><span class="material-symbols-outlined">delete</span></i></a></td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        {% if lista_contatos %}
+            <h4 style="margin-top:30px; margin-bottom:16px">Contato</h4>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for contato in lista_contatos %}
+                  <tr>
+                    <td> {{ contato.nome_cont }} </td>
+                    <td> {{ contato.email }} </td>
+                    <td> {{ contato.telefone}} </td>
+                    <td><a href="/{{contato.id}}/editar/contato"><span class="material-symbols-outlined">editar</span></a></td>
+                    <td><a href="/{{contato.id}}/deletar/contato"><span class="material-symbols-outlined">deletar</span></i></a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% endif %}
+    {% else %}
+        <p><strong>Resultado não encontrado.</strong></p>
+    {% endif %}
+
+</main>
+
+{% endblock %}

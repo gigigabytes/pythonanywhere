@@ -1,0 +1,188 @@
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" type="text/css" href="{% static 'acervo/css/base.css' %}">
+{% endblock %}
+
+{% block 'conteudo' %}
+<main class="container" style="padding-bottom: 80px;">
+
+    <h1 class="title">Seja bem-vindo, {{ user.first_name }}</h1>
+
+    <div class="accordion accordion-flush" id="accordion">
+      <div class="accordion-item ">
+        <h2 class="accordion-header">
+          <button class="accordion-button border rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#itens" aria-expanded="false" aria-controls="itens">
+            <p class="header-title">Itens</p>
+          </button>
+        </h2>
+        <div id="itens" class="accordion-collapse collapse" data-bs-parent="#accordion">
+          {% if lista_itens %}
+            <table class="table  table-hover rounded">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Emprestado?</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in lista_itens %}
+                  <tr>
+                      <td> {{ item.nome }} </td>
+                      <td> {{ item.descricao }} </td>
+                      <td> {% if item.emprestado %} Sim {% else %} Não {% endif %} </td>
+                      <td><a href="/{{item.id}}/editar/item"><span class="material-symbols-outlined">editar</span></a></td>
+                      <td><a href="/{{item.id}}/deletar/item"><span class="material-symbols-outlined">deletar</span></i></a></td>
+                      <br>
+                      <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item</a>
+
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p><strong> Nenhum item disponível </strong></p>
+                      <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item</a>
+
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed border rounded" type="button" data-bs-toggle="collapse" data-bs-target="#livros" aria-expanded="false" aria-controls="livros">
+            <p class="header-title"> Livros </p>
+          </button>
+        </h2>
+        <div id="livros" class="accordion-collapse collapse" data-bs-parent="#accordion">
+          {% if lista_livros %}
+            <table class="table table-hover rounded">
+              <thead>
+                <tr>
+                  <th scope="col">Título</th>
+                  <th scope="col">Autor</th>
+                  <th scope="col">Ano</th>
+                  <th scope="col">Emprestado?</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for livro in lista_livros %}
+                  <tr>
+                    <td> {{ livro.titulo }} </td>
+                    <td> {{ livro.autor }} </td>
+                    <td> {{ livro.ano }} </td>
+                    <li> Capa : <img src="{{ livro.fotoCapa.url }}" alt="Foto Capa"></li>
+
+                    <style>
+                        img {width: 40px; height: 40px;}
+                    </style>
+                    <td> {% if livro.emprestado %} Sim {% else %} Não {% endif %} </td>
+                    <td><a href="/{{livro.id}}/editar/livro"><span class="material-symbols-outlined">editar</span></a></td>
+                    <td><a href="/{{livro.id}}/deletar/livro"><span class="material-symbols-outlined">deletar</span></i></a></td>
+                    <br>
+                    <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
+
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p><strong> Nenhum livro disponível </strong></p>
+                    <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
+
+          {% endif %}
+        </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed border rounded" type="button" data-bs-toggle="collapse" data-bs-target="#contatos" aria-expanded="false" aria-controls="contatos">
+            <p class="header-title"> Contatos </p>
+          </button>
+        </h2>
+        <div id="contatos" class="accordion-collapse collapse" data-bs-parent="#accordion">
+          {% if lista_contatos %}
+            <table class="table table-hover rounded">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for contato in lista_contatos %}
+                  <tr>
+                    <td> {{ contato.nome_cont }} </td>
+                    <td> {{ contato.email }} </td>
+                    <td> {{ contato.telefone}} </td>
+                    <td><a href="/{{contato.id}}/editar/contato"><span class="material-symbols-outlined">editar</span></a></td>
+                    <td><a href="/{{contato.id}}/deletar/contato"><span class="material-symbols-outlined">deletar</span></i></a></td>
+                    <br>
+                    <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato</a>
+
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p><strong> Nenhum contato cadastrado </strong></p>
+                    <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato</a>
+
+          {% endif %}
+        </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed border rounded" type="button" data-bs-toggle="collapse" data-bs-target="#emprestimos" aria-expanded="false" aria-controls="emprestimos">
+            <p class="header-title"> Empréstimos </p>
+          </button>
+        </h2>
+        <div id="emprestimos" class="accordion-collapse collapse" data-bs-parent="#accordion">
+          {% if emprestimos_cadastrados %}
+            <table class="table table-hover rounded">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Data de empréstimo</th>
+                  <th scope="col">Objeto</th>
+                  <th scope="col">Finalizar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for emp in lista_emp %}
+                    <tr>
+                        <td> {{ emp.contato }} </td>
+                        <td> {{ emp.data_emp }} </td>
+                        <td> {{ emp }} </td>
+                        <td><a href="/{{emp.id}}/finalizar"><span class="material-symbols-outlined"> concluir </span></a></td>
+                        <br>
+                        <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo</a>
+
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p><strong> Nenhum empréstimo cadastrado </strong></p>
+                        <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo</a>
+
+          {% endif %}
+        </div>
+    </div>
+
+        <br>
+        <br>
+        Logado como: {{ user.username }}
+        <br>
+        (<a href="{% url 'logout' %}?next={% url 'acervo:index' %}">Logout</a>)
+
+
+</main>
+{% endblock %}

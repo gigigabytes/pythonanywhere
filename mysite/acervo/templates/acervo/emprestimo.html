@@ -1,0 +1,58 @@
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" type="text/css" href="{% static 'acervo/css/base.css' %}">
+{% endblock %}
+
+{% block 'conteudo' %}
+
+<main class="container" style="padding-bottom: 80px;">
+
+    <h4 style="margin-top:30px; margin-bottom:16px">Adicionar novo empréstimo</h4>
+
+    <form action="{% url 'acervo:emprestimo' %}" method="POST"> {% csrf_token %}
+        <div class="row g-3">
+            <div class="col">
+                <select name="item" class="form-select" aria-label="Default select example">
+                  <option selected>Selecionar item</option>
+                    {% for item in lista_itens %}
+                        {% if item.id %}
+                            <option value="{{ item.id }}">{{ item.nome }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <select name="livro" class="form-select" aria-label="Default select example">
+                  <option selected>Selecionar livro</option>
+                    {% for livro in lista_livros %}
+                        {% if livro.id %}
+                            <option value="{{ livro.id }}">{{ livro }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <select name="contato" class="form-select" aria-label="Default select example">
+                  <option selected>Selecionar contato</option>
+                    {% for contato in lista_contatos %}
+                        {% if contato.id %}
+                            <option value="{{ contato.id }}">{{ contato }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <input style="margin-top:30px;" class="btn btn-dark btn-sm" type="submit" value="Salvar">
+    </form>
+
+    <hr/>
+        <br>
+        <br>
+        Logado como: {{ user.username }}
+        <br>
+        (<a href="{% url 'logout' %}?next={% url 'acervo:index' %}">Logout</a>)
+
+</main>
+
+{% endblock %}
