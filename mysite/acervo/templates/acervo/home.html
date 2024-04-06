@@ -7,7 +7,12 @@
 {% block 'conteudo' %}
 <main class="container" style="padding-bottom: 80px;">
 
-    <h1 class="title">Seja bem-vindo, {{ user.first_name }}</h1>
+    <h1 class="title">🍓 Seja bem-vindo, {{ user.first_name }} 🍓</h1>
+    <form method="get" action="{% url 'acervo:pesquisa' %}">
+    <label for="pesquisa">Pesquisar item ou livro:</label>
+    <input type="text" name="pesquisa" id="pesquisa" />
+    <button type="submit">Pesquisar</button>
+    </form>
 
     <div class="accordion accordion-flush" id="accordion">
       <div class="accordion-item ">
@@ -44,11 +49,9 @@
             </table>
           {% else %}
             <p><strong> Nenhum item disponível </strong></p>
-                      <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item</a>
 
           {% endif %}
-                     <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item</a>
-
+            <a href="{% url 'acervo:salva_item' %}">(+) Cadastrar novo item💡 </a>
         </div>
       </div>
 
@@ -93,10 +96,9 @@
             </table>
           {% else %}
             <p><strong> Nenhum livro disponível </strong></p>
-                    <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
 
           {% endif %}
-                    <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro</a>
+                    <a href="{% url 'acervo:livro_add' %}">(+) Cadastrar novo livro 📚</a>
 
         </div>
 
@@ -134,10 +136,9 @@
             </table>
           {% else %}
             <p><strong> Nenhum contato cadastrado </strong></p>
-                    <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato</a>
 
           {% endif %}
-                    <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato</a>
+                    <a href="{% url 'acervo:salva_contato' %}">(+) Cadastrar novo contato📞 </a>
 
         </div>
 
@@ -166,9 +167,9 @@
                         <td> {{ emp.data_emp }} </td>
                         <td> {{ emp }} </td>
                         <br>
-                        <a href="{% url 'acervo:registro_emprestimo' %}">Visualizar devoluções dos empréstimos do usuário</a>
                         <br>
-                        <td><a href="/{{emp.id}}/finalizar"><span class="material-symbols-outlined"> concluir </span></a></td>
+
+                        <<td><a href="{% url 'acervo:finalizar' pk=emp.pk %}">Finalizar</a></td> <!-- Botão de Finalizar -->
                         <br>
 
                     </tr>
@@ -177,10 +178,11 @@
             </table>
           {% else %}
             <p><strong> Nenhum empréstimo cadastrado </strong></p>
-                        <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo</a>
 
           {% endif %}
-                       <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo</a>
+                       <a href="{% url 'acervo:emprestimo' %}">(+) Cadastrar novo empréstimo🔀 </a>
+                       <br>
+                    <a href="{% url 'acervo:registro_emprestimo' %}">Visualizar devoluções dos empréstimos do usuário 🔙 </a>
 
         </div>
     </div>
